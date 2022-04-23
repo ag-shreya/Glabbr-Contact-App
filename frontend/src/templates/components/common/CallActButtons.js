@@ -1,16 +1,15 @@
 import React from "react";
-import { MessageOutlined } from "@ant-design/icons";
+import { FiMessageSquare, FiPhoneCall } from "react-icons/fi";
 
 function CallActButtons(props) {
   return (
     /* Action Btns */
     <div className="call-act-btn">
       <p className="me-5">
-        <MessageOutlined className="pe-2" /> Send message
+        <FiMessageSquare className="pe-2" /> Send message
       </p>
       <p>
-        <i className="fa-solid fa-phone pe-2"></i>
-        Call
+        <FiPhoneCall className="pe-2" /> Call
       </p>
     </div>
   );

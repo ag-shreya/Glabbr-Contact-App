@@ -1,0 +1,36 @@
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+/* input */
+.form-group input {
+  font-size: 1.3rem;
+  padding: 0.8rem 2rem;
+  outline: none;
+  border: none;
+  width: 100%;
+  box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.1) !important;
+  transition-duration: 0.4s;
+}
+
+.form-group input:focus {
+  box-shadow: 0.2rem 0.2rem 1rem rgba(0, 0, 0, 0.2) !important;
+}
+
+.form-group label {
+  font-size: 1rem !important;
+  margin-bottom: 0.5rem;
+}
+
+/* dropdown */
+.dropdown-item {
+  padding: 0.8rem 2rem;
+  font-size: 1.3rem;
+}
+
+.dropdown-menu {
+  animation: fade-out 0.5s;
+  border: none;
+  box-shadow: 0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.1) !important;
+}
+

@@ -4,14 +4,14 @@ import Search from "../common/Search";
 
 function Header({ showModal }) {
   return (
-    <div className="pt-5 d-flex justify-content-between align-items-center">
+    <div className="nav-bar">
       {/* Brand name */}
       <div>
         <h1 className="m-0">DOZ Pharmacy - Contacts</h1>
       </div>
 
       {/* Action Btn */}
-      <div>
+      <div className="nav-act-btn">
         <button className="btn btn-add" onClick={showModal}>
           Add Contact
         </button>

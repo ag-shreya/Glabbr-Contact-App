@@ -25,5 +25,13 @@
 }
 
 .call-act-btn svg {
-  font-size: 1.5rem;
+  font-size: 2.2rem;
+}
+
+/* To give rounded border to the modal */
+.ant-modal-content {
+  border-radius: 1.5rem !important;
+}
+.ant-modal-header {
+  border-radius: 1.5rem 1.5rem 0 0 !important;
 }

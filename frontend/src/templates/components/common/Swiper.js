@@ -9,7 +9,25 @@ import "swiper/css/scrollbar";
 
 function SwiperWrapper({ data, showModal }) {
   return (
-    <Swiper spaceBetween={30} slidesPerView={3.5} className="pb-5 pe-5">
+    <Swiper
+      slidesPerView={1}
+      spaceBetween={30}
+      keyboard={{
+        enabled: true,
+      }}
+      breakpoints={{
+        480: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 2.5,
+        },
+        1024: {
+          slidesPerView: 3.5,
+        },
+      }}
+      className="pb-5 pe-md-5"
+    >
       {data.map((item, index) => {
         return (
           <SwiperSlide

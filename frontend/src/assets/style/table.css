@@ -5,9 +5,11 @@
   text-transform: uppercase;
 }
 
-.table td {
+.table td,
+.table th {
   padding: 2rem 0;
   vertical-align: middle;
+  padding-right: 1rem;
 }
 
 .table > :not(:first-child) {
