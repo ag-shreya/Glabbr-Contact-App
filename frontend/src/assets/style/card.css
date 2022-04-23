@@ -1,0 +1,29 @@
+.card {
+  border-radius: 1.5rem;
+  box-shadow: 1rem 1.5rem 1rem rgba(0,0,0,.05)!important;
+}
+
+/* Avatar */
+.ant-avatar .anticon-user {
+  font-size: 5rem;
+}
+.ant-avatar .anticon-user > svg {
+  font-size: 1.5rem;
+}
+
+.call-act-btn {
+  padding-top: 0.6rem;
+  display: flex;
+}
+
+.call-act-btn > p {
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.call-act-btn svg {
+  font-size: 1.5rem;
+}
