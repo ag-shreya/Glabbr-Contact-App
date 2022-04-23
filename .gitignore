@@ -4,3 +4,4 @@
 
 # scripts
 /backend/.env
+/backend/ormconfig.json
