@@ -9,7 +9,6 @@ function ContactsModal(props) {
   const { isModalVisible, setIsModalVisible, handleOk, title } = props;
   const [state, setState] = useState({
     file: null,
-    showDropdownMenu: false,
     favorite: false,
   });
 
