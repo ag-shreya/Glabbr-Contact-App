@@ -41,3 +41,16 @@ Contact Application for Glabbr Interview (Round - 2)
     Initial command (out of the box)
     "start:dev": "nest start --watch", 
     -->
+
+
+
+https://a-carreras-c.medium.com/development-and-production-variables-for-react-apps-c04af8b430a5
+
+https://www.techomoro.com/how-to-use-redux-saga-in-a-react-app-simple-blog-example/
+
+https://react-redux.js.org/introduction/getting-started
+https://redux-saga.js.org/docs/introduction/BeginnerTutorial
+
+https://sweetcode.io/deploying-express-node-js-backend-heroku/
+
+https://www.digitalocean.com/community/tutorials/react-axios-react

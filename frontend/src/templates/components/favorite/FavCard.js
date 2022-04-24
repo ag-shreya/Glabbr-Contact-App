@@ -5,7 +5,7 @@ import CallActButtons from "../common/CallActButtons";
 import Avatar from "../common/Avatar";
 import UserDetails from "../common/UserDetails";
 
-function FavCard() {
+function FavCard({ data }) {
   return (
     <div className="card border-0 p-3 pb-4">
       {/* Card header */}
@@ -17,7 +17,7 @@ function FavCard() {
 
         {/* User Name + org */}
         <div className="col-8 mb-2">
-          <UserDetails name="Julia Golmes" organization="Zencorporation" />
+          <UserDetails name={data.name} organization={data.organization} />
         </div>
 
         {/* Favorite Btn */}
@@ -31,11 +31,13 @@ function FavCard() {
       {/* Card Body */}
       <div className="card-body py-0">
         {/* Status */}
-        <p className="m-0 text-desc pt-4">Active</p>
-        <p className="text-desc">San Francisco, USA</p>
+        <p className="m-0 text-desc pt-4">
+          {data.status ? "Active" : "Inactive"}
+        </p>
+        <p className="text-desc">{data.location}</p>
 
         {/* Action Btns */}
-        <CallActButtons />
+        <CallActButtons phoneNumber={data.phoneNumber} />
       </div>
     </div>
   );

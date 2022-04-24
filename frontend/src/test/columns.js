@@ -22,7 +22,9 @@ export const columns = [
     title: "Status",
     dataIndex: "status",
     key: "status",
-    render: (text) => <p className="text-desc">{text}</p>,
+    render: (text) => (
+      <p className="text-desc">{text ? "Active" : "Inactive"}</p>
+    ),
   },
   {
     title: "Location",

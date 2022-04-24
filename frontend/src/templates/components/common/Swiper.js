@@ -29,15 +29,16 @@ function SwiperWrapper({ data, showModal }) {
       className="pb-5 pe-md-5"
     >
       {data.map((item, index) => {
-        return (
-          <SwiperSlide
-            style={{ cursor: "pointer" }}
-            onClick={() => showModal(item)}
-            key={index}
-          >
-            <FavCard />
-          </SwiperSlide>
-        );
+        if (item.isFavorite)
+          return (
+            <SwiperSlide
+              style={{ cursor: "pointer" }}
+              onClick={() => showModal(item)}
+              key={index}
+            >
+              <FavCard data={item} />
+            </SwiperSlide>
+          );
       })}
     </Swiper>
   );

@@ -6,7 +6,7 @@ import Dropdown from "./input/Dropdown";
 import { BsStar, BsStarFill } from "react-icons/bs";
 
 function ContactsModal(props) {
-  const { isModalVisible, setIsModalVisible, handleOk, title } = props;
+  const { isModalVisible, setIsModalVisible, handleOk, title, data } = props;
   const [state, setState] = useState({
     file: null,
     favorite: false,
@@ -14,7 +14,13 @@ function ContactsModal(props) {
 
   useEffect(() => {
     fields.map((item) => {
-      handleChange(item.id, item.default ? item.default : "");
+      if (item.id === "status") {
+        handleChange(item.id, data[item.id] ? "Active" : "Inactive");
+      } else if (data[item.id]) {
+        handleChange(item.id, data[item.id]);
+      } else {
+        handleChange(item.id, item.default ? item.default : "");
+      }
     });
   }, [props]);
 
@@ -28,17 +34,6 @@ function ContactsModal(props) {
     });
   };
 
-  const changeHandler = (e) => {
-    const file = e.target.files[0];
-    // Encode the file using the FileReader API
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      console.log(reader.result);
-      // Logs data:<type>;base64,wL2dvYWwgbW9yZ...
-      // setFile(reader.result);
-    };
-    reader.readAsDataURL(file);
-  };
 
   const validateInput = () => {
     var flag = false;
