@@ -32,3 +32,28 @@ export async function post(url, config) {
     })
     .then((response) => response.data);
 }
+
+export async function put(url, config) {
+  return await axiosApi
+    .put(url, {
+      ...config,
+    })
+    .then((response) => response.data);
+}
+
+export async function patch(url, config) {
+  return await axiosApi
+    .patch(url, {
+      ...config,
+    })
+    .then((response) => response.data);
+}
+
+export async function deleteContact(url, config) {
+  return await axiosApi
+    .delete(url, {
+      ...config,
+    })
+    .then((response) => response.data);
+}
+
