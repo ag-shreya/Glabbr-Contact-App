@@ -18,6 +18,6 @@ export class Item extends BaseEntity {
   @Column({ type: 'boolean', default: false })
   isFavorite: boolean;
 
-  // @Column({ type: 'varchar', length: 300, nullable: true })
-  // tags: object | null;
+  @Column({ type: 'varchar', length: 300, nullable: true })
+  tags: object | null;
 }
