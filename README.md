@@ -11,36 +11,16 @@ Contact Application for Glabbr Interview (Round - 2)
 > for frontend
 
 ```cmd
-    cd frontend
+    cd ./frontend
     npm install
 ```
 
 > Backend Initialization
 
 ```cmd
- cd ./backend
-```
-
-1. Load Node modules dependencies
-
-   ```cmd
+    cd ./backend
     npm install
-   ```
-
-2. To import db
-
-   ```cmd
-    npm run start:dev:db
-   ```
-
-3. Start the nextjs server
-   ```cmd
-    npm run start:dev
-   ```
-    <!-- 
-    Initial command (out of the box)
-    "start:dev": "nest start --watch", 
-    -->
+```
 
 ---
 ### Helper Links
