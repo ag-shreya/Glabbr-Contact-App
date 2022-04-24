@@ -1,10 +1,8 @@
 import axios from "axios";
-
+import { config } from "./Constants";
 //apply base url for axios
-const REACT_APP_URL =
-  process.env.NODE_ENV === "development"
-    ? process.env.REACT_APP_DEV_URL
-    : process.env.REACT_APP_DEV_URL;
+
+const REACT_APP_URL = config.url.API_URL;
 
 const axiosApi = axios.create({
   baseURL: REACT_APP_URL,

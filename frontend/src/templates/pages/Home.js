@@ -16,7 +16,7 @@ function Home() {
   const { contacts, loadingItems } = useSelector((state) => state.PostReducer);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [item, setItem] = useState(null);
+  const [item, setItem] = useState({});
   const [title, setTitle] = useState("");
 
   useEffect(() => {
@@ -50,11 +50,11 @@ function Home() {
           <Header showModal={() => showModal("Add Contact")} />
           <Favorite
             showModal={(data) => showModal("Edit Contact", data)}
-            data={Array.from(Array(parseInt(10)).keys())}
+            data={contacts}
           />
           <Contacts
             showModal={(data) => showModal("Edit Contact", data)}
-            data={Array.from(Array(parseInt(10)).keys())}
+            data={contacts}
           />
         </>
       )}

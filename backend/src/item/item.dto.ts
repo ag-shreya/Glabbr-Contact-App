@@ -61,6 +61,7 @@ export class ItemDTO implements Readonly<ItemDTO> {
       location: entity.location,
       organization: entity.organization,
       isFavorite: entity.isFavorite,
+      tags: entity.tags,
     });
   }
 }

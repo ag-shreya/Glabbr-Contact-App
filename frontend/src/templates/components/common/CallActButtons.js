@@ -1,7 +1,7 @@
 import React from "react";
 import { FiMessageSquare, FiPhoneCall } from "react-icons/fi";
 
-function CallActButtons(props) {
+function CallActButtons({ phoneNumber }) {
   return (
     /* Action Btns */
     <div className="call-act-btn">

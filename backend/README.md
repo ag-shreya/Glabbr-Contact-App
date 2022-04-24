@@ -17,14 +17,15 @@
      username: postgres \
      password: root \
      server: 172.17.0.2 (below are the cmds to get the id)
-  ```cmd
-  $ docker ps
-  ```
-| CONTAINER ID                                                                 | IMAGE          | COMMAND                | CREATED        | STATUS        | PORTS                       | NAMES         |
-|------------------------------------------------------------------------------|----------------|------------------------|----------------|---------------|-----------------------------|---------------|
-| cfcca4b961b9                                                                 | dpage/pgadmin4 | "/entrypoint.sh"       | 14 minutes ago | Up 14 minutes | 443/tcp, 0.0.0.0:82->80/tcp | contact_admin |
-| e14cd1f4a369                                                                 | postgres       | "docker-entrypoint.s…" | 14 minutes ago | Up 14 minutes | 0.0.0.0:5432->5432/tcp      | contact_app   |
 
+```cmd
+$ docker ps
+```
+
+| CONTAINER ID | IMAGE          | COMMAND                | CREATED        | STATUS        | PORTS                       | NAMES         |
+| ------------ | -------------- | ---------------------- | -------------- | ------------- | --------------------------- | ------------- |
+| cfcca4b961b9 | dpage/pgadmin4 | "/entrypoint.sh"       | 14 minutes ago | Up 14 minutes | 443/tcp, 0.0.0.0:82->80/tcp | contact_admin |
+| e14cd1f4a369 | postgres       | "docker-entrypoint.s…" | 14 minutes ago | Up 14 minutes | 0.0.0.0:5432->5432/tcp      | contact_app   |
 
 ```cmd
 $ docker inspect e14cd1f4a369 | grep IPAddress
@@ -33,6 +34,22 @@ $ docker inspect e14cd1f4a369 | grep IPAddress
     "IPAddress": "172.17.0.2",
           "IPAddress": "172.17.0.2",
 ```
+
+---
+
+3. Migrate Data
+
+```sh
+   npm run typeorm:migration:generate -- my_init
+   npm run typeorm:migration:run
+```
+
+```
+
+
+
+
+
 
 ---
 ### Helper Links
@@ -47,3 +64,4 @@ $ docker inspect e14cd1f4a369 | grep IPAddress
 
    [Run PostgreSQL and pgAdmin in docker for local development using docker compose](https://belowthemalt.com/2021/06/09/run-postgresql-and-pgadmin-in-docker-for-local-development-using-docker-compose/)
 
+```

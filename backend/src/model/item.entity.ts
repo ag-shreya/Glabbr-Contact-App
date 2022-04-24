@@ -19,5 +19,5 @@ export class Item extends BaseEntity {
   isFavorite: boolean;
 
   @Column({ type: 'varchar', length: 300, nullable: true })
-  tags: object | null;
+  tags: string[];
 }
