@@ -52,7 +52,16 @@ function ContactsModal(props) {
       }
     });
 
-    if (!flag) handleOk();
+    if (!flag)
+      handleOk({
+        name: state.name,
+        phoneNumber: state.phoneNumber,
+        status: state.status === "Active" ? true : false,
+        location: state.location,
+        organization: state.organization,
+        isFavorite: state.isFavorite ? true : false,
+        tags: ["client"],
+      });
   };
 
   return (
