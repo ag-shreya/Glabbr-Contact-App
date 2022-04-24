@@ -44,12 +44,12 @@ $ docker inspect e14cd1f4a369 | grep IPAddress
    npm run typeorm:migration:run
 ```
 
+4. To generate seed data
+```sh
+   npm run start:dev:db:seed 
 ```
 
-
-
-
-
+5. Api Documentation via [Swagger](http://localhost:3000/api/)
 
 ---
 ### Helper Links
