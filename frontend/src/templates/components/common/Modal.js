@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Form, Tooltip, Button } from "antd";
-import UploadImage from "./modal/UploadImage";
+// import UploadImage from "./modal/UploadImage";
 import fields from "./modal/ContactFields";
 import Dropdown from "./input/Dropdown";
 import { BsStar, BsStarFill } from "react-icons/bs";
@@ -75,7 +75,7 @@ function ContactsModal(props) {
     >
       <Form className="row">
         <div className="col-md-3 text-center">
-          <UploadImage />
+          {/* <UploadImage /> */}
           <Tooltip title="favorite">
             <Button
               shape="circle"
