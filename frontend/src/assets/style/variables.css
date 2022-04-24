@@ -1,0 +1,9 @@
+* {
+  /* fonts */
+  --font-regular: "Raleway", sans-serif;
+  --sec-font: "Pacifico", cursive;
+
+  --text-gray: #444444e1;
+  --text-muted: #6c757d;
+  --text-primary: #2a52be;
+}

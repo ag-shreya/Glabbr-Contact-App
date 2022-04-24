@@ -1,0 +1,22 @@
+.table th {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.table td,
+.table th {
+  padding: 2rem 0;
+  vertical-align: middle;
+  padding-right: 1rem;
+}
+
+.table > :not(:first-child) {
+  border-top: 0;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(245, 229, 255, 0.794);
+  cursor: pointer;
+}
