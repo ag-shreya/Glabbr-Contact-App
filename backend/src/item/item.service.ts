@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Item } from '../model/item.entity';
 import { Repository } from 'typeorm';
 import { ItemDTO } from './item.dto';
+import { PageDto, PageMetaDto, PageOptionsDto } from '../common/dtos';
 
 @Injectable()
 export class ItemService {
@@ -12,6 +13,25 @@ export class ItemService {
   // create new contact
   public async create(dto: ItemDTO): Promise<ItemDTO> {
     return this.repo.save(ItemDTO.from(dto)).then((e) => ItemDTO.fromEntity(e));
+  }
+
+  // get paginated data
+  public async getContacts(
+    pageOptionsDto: PageOptionsDto,
+  ): Promise<PageDto<ItemDTO>> {
+    const queryBuilder = this.repo.createQueryBuilder('item');
+
+    queryBuilder
+      .orderBy('item.id', pageOptionsDto.order)
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take);
+
+    const itemCount = await queryBuilder.getCount();
+    const { entities } = await queryBuilder.getRawAndEntities();
+
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
   // get all contact information

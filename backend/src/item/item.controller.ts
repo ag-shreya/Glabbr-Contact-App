@@ -1,5 +1,8 @@
 import {
   Controller,
+  HttpCode,
+  HttpStatus,
+  Query,
   Get,
   Post,
   Put,
@@ -10,6 +13,7 @@ import {
 } from '@nestjs/common';
 import { ItemService } from './item.service';
 import { ItemDTO } from './item.dto';
+import { PageDto, PageOptionsDto } from '../common/dtos';
 
 @Controller('item')
 export class ItemController {
@@ -19,9 +23,17 @@ export class ItemController {
     return this.service.create(dto);
   }
 
+  // @Get()
+  // public async getAll(): Promise<ItemDTO[]> {
+  //   return await this.service.getAll();
+  // }
+
   @Get()
-  public async getAll(): Promise<ItemDTO[]> {
-    return await this.service.getAll();
+  @HttpCode(HttpStatus.OK)
+  async getContacts(
+    @Query() pageOptionsDto: PageOptionsDto,
+  ): Promise<PageDto<ItemDTO>> {
+    return this.service.getContacts(pageOptionsDto);
   }
 
   @Get(':id')
