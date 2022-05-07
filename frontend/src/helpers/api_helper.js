@@ -23,7 +23,7 @@ export async function get(url, config) {
       ...config,
     })
     .then((response) => response.data);
-}
+  }
 
 export async function post(url, config) {
   return await axiosApi

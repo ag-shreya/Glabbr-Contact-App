@@ -1,9 +1,9 @@
 import * as _ from 'lodash';
 import { createConnection, ConnectionOptions } from 'typeorm';
 import { configService } from '../config/config.service';
-import { ItemService } from '../item/item.service';
-import { Item } from '../model/item.entity';
-import { ItemDTO } from '../item/item.dto';
+import { ItemService } from '../item/services/item.service';
+import { Item } from '../item/entities/item.entity';
+import { ItemDTO } from '../item/dtos/item.dto';
 
 async function run() {
   const seedId = Date.now()

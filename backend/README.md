@@ -16,7 +16,7 @@
      post: 5432 \
      username: postgres \
      password: root \
-     server: 172.17.0.2 (below are the cmds to get the id)
+     server: 172.17.0.2 (below are the cmds to get the id) / host.docker.internal
 
 ```cmd
 $ docker ps
@@ -63,5 +63,9 @@ $ docker inspect e14cd1f4a369 | grep IPAddress
    [How to run PostgreSQL & PgAdmin in 3 steps using Docker](https://migueldoctor.medium.com/how-to-run-postgresql-pgadmin-in-3-steps-using-docker-d6fe06e47ca1)
 
    [Run PostgreSQL and pgAdmin in docker for local development using docker compose](https://belowthemalt.com/2021/06/09/run-postgresql-and-pgadmin-in-docker-for-local-development-using-docker-compose/)
+
+3. Get paginated data
+   
+   [How to create pagination in Nest.js with TypeORM + Swagger](https://pietrzakadrian.com/blog/how-to-create-pagination-in-nestjs-with-typeorm-swagger)
 
 ```
