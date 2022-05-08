@@ -1,141 +1,100 @@
-import {
-  GET_ITEMS,
-  GET_ITEM_SUCCESS,
-  GET_ITEM_FAIL,
-  // GET_POST_DETAILS,
-  // GET_POST_DETAILS_SUCCESS,
-  // GET_POST_DETAILS_FAIL,
-  DELETE_ITEM,
-  DELETE_ITEM_SUCCESS,
-  DELETE_ITEM_FAIL,
-  PUT_ITEM,
-  PUT_ITEM_SUCCESS,
-  PUT_ITEM_FAIL,
-  GET_FAVORITE_ITEMS,
-  GET_FAVORITE_ITEM_SUCCESS,
-  GET_FAVORITE_ITEM_FAIL,
-  TOGGLE_FAVORITE_ITEM,
-  TOGGLE_FAVORITE_ITEM_SUCCESS,
-  TOGGLE_FAVORITE_ITEM_FAIL,
-} from "./actionTypes";
+import * as types from "./actionTypes";
 
-export const getItems = () => {
+// get contact items/list (paginated data)
+export const getContactItems = (params) => {
   return {
-    type: GET_ITEMS,
+    type: types.GET_ITEMS,
+    params,
   };
 };
-
-export const getItemsSuccess = (contact) => {
+export const getContactItemsSuccess = (payload) => {
   return {
-    type: GET_ITEM_SUCCESS,
-    payload: contact,
+    type: types.GET_ITEM_SUCCESS,
+    payload,
   };
 };
-
-export const getItemsFail = (error) => {
+export const getContactItemsFail = (error) => {
   return {
-    type: GET_ITEM_FAIL,
+    type: types.GET_ITEM_FAIL,
     payload: error,
   };
 };
 
-// export const getPostDetails = (id) => {
-//   return {
-//     type: GET_POST_DETAILS,
-//     payload: id,
-//   };
-// };
-
-// export const getPostDetailsSuccess = (post) => {
-//   return {
-//     type: GET_POST_DETAILS_SUCCESS,
-//     payload: post,
-//   };
-// };
-
-// export const getPostDetailsFail = (error) => {
-//   return {
-//     type: GET_POST_DETAILS_FAIL,
-//     payload: error,
-//   };
-// };
-
-export const deleteItem = () => {
+// post contact detail-item
+export const postContactItem = (payload) => {
   return {
-    type: DELETE_ITEM,
+    type: types.POST_ITEMS,
+    payload,
   };
 };
-
-export const deleteItemSuccess = (contact) => {
+export const postContactItemSuccess = (post) => {
   return {
-    type: DELETE_ITEM_SUCCESS,
-    payload: contact,
+    type: types.POST_ITEM_SUCCESS,
+    payload: post,
   };
 };
-
-export const deleteItemFail = (error) => {
+export const postContactItemFail = (error) => {
   return {
-    type: DELETE_ITEM_FAIL,
+    type: types.POST_ITEM_FAIL,
     payload: error,
   };
 };
 
-export const updateItem = () => {
+// delete contact detail-item
+export const deleteContact = (id) => {
   return {
-    type: PUT_ITEM,
+    type: types.DELETE_ITEM,
+    id,
   };
 };
-
-export const updateItemSuccess = (contact) => {
+export const deleteContactSuccess = (contact) => {
   return {
-    type: PUT_ITEM_SUCCESS,
+    type: types.DELETE_ITEM_SUCCESS,
     payload: contact,
   };
 };
-
-export const updateItemFail = (error) => {
+export const deleteContactFail = (error) => {
   return {
-    type: PUT_ITEM_FAIL,
+    type: types.DELETE_ITEM_FAIL,
     payload: error,
   };
 };
 
+// update contact details
+export const updateContact = (payload) => {
+  return {
+    type: types.PUT_ITEM,
+    payload,
+  };
+};
+export const updateContactSuccess = (contact) => {
+  return {
+    type: types.PUT_ITEM_SUCCESS,
+    payload: contact,
+  };
+};
+export const updateContactFail = (error) => {
+  return {
+    type: types.PUT_ITEM_FAIL,
+    payload: error,
+  };
+};
+
+// get list of favorite contact details
 export const getFavoriteItems = () => {
   return {
-    type: GET_FAVORITE_ITEMS,
+    type: types.GET_FAVORITE_ITEMS,
   };
 };
-
 export const getFavoriteItemsSuccess = (contact) => {
   return {
-    type: GET_FAVORITE_ITEM_SUCCESS,
+    type: types.GET_FAVORITE_ITEM_SUCCESS,
     payload: contact,
   };
 };
-
 export const getFavoriteItemsFail = (error) => {
   return {
-    type: GET_FAVORITE_ITEM_FAIL,
-    payload: error,
-  };
-};
-
-export const updateFavoriteItems = () => {
-  return {
-    type: TOGGLE_FAVORITE_ITEM,
-  };
-};
-
-export const updateFavoriteItemsSuccess = (contact) => {
-  return {
-    type: TOGGLE_FAVORITE_ITEM_SUCCESS,
-    payload: contact,
-  };
-};
-
-export const updateFavoriteItemsFail = (error) => {
-  return {
-    type: TOGGLE_FAVORITE_ITEM_FAIL,
+    type: types.GET_FAVORITE_ITEM_FAIL,
     payload: error,
   };
 };

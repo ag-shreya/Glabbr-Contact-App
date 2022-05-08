@@ -1,98 +1,59 @@
 import { takeLatest, put, call } from "redux-saga/effects";
-import {
-  GET_ITEMS,
-  // GET_POST_DETAILS,
-  DELETE_ITEM,
-  PUT_ITEM,
-  GET_FAVORITE_ITEMS,
-  TOGGLE_FAVORITE_ITEM,
-} from "./actionTypes";
+import * as types from "./actionTypes";
+import * as actions from "./actions";
+import * as api from "../../helpers/backend_helper";
 
-import {
-  getItemsSuccess,
-  getItemsFail,
-  //   getPostDetailsSuccess,
-  //   getPostDetailsFail,
-  deleteItemSuccess,
-  deleteItemFail,
-  updateItemSuccess,
-  updateItemFail,
-  getFavoriteItemsSuccess,
-  getFavoriteItemsFail,
-  updateFavoriteItemsSuccess,
-  updateFavoriteItemsFail,
-} from "./actions";
-
-import {
-  getItems,
-  // postItems,
-  deleteItem,
-  updateItem,
-  getFavoriteItems,
-  updateFavoriteItems,
-} from "../../helpers/backend_helper";
-
-function* onGetItems() {
+function* onGetItems(action) {
   try {
-    const response = yield call(getItems);
-    yield put(getItemsSuccess(response));
+    const response = yield call(() => api.getItems(action.params));
+    yield put(actions.getContactItemsSuccess(response));
   } catch (error) {
-    yield put(getItemsFail(error.response));
+    yield put(actions.getContactItemsFail(error.response));
   }
 }
 
-// function* onGetPostDetails({ payload: id }) {
-//   try {
-//     const response = yield call(getPostDetails, id);
-//     yield put(getPostDetailsSuccess(response));
-//   } catch (error) {
-//     yield put(getPostDetailsFail(error.response));
-//   }
-// }
-
-function* onDeleteItem({ payload: id }) {
+function* onPostItems(action) {
   try {
-    const response = yield call(deleteItem, id);
-    yield put(deleteItemSuccess(response));
+    const response = yield call(() => api.postItem(action.payload));
+    yield put(actions.postContactItemSuccess(response));
   } catch (error) {
-    yield put(deleteItemFail(error.response));
+    yield put(actions.postContactItemFail(error.response));
   }
 }
 
-function* onUpdateItem({ payload: id }) {
+function* onDeleteItem(action) {
   try {
-    const response = yield call(updateItem, id);
-    yield put(updateItemSuccess(response));
+    const response = yield call(() => api.deleteItem(action.id));
+    yield put(actions.deleteContactSuccess(response));
   } catch (error) {
-    yield put(updateItemFail(error.response));
+    yield put(actions.deleteContactFail(error.response));
+  }
+}
+
+function* onUpdateItem(action) {
+  try {
+    const response = yield call(() => api.updateItem(action.payload));
+    yield put(actions.updateContactSuccess(response));
+  } catch (error) {
+    yield put(actions.updateContactFail(error.response));
   }
 }
 
 function* onGetFavoriteItems() {
   try {
-    const response = yield call(getFavoriteItems);
-    yield put(getFavoriteItemsSuccess(response));
+    const response = yield call(api.getFavoriteItems);
+    yield put(actions.getFavoriteItemsSuccess(response));
   } catch (error) {
-    yield put(getFavoriteItemsFail(error.response));
-  }
-}
-
-function* onUpdateFavoriteItem({ payload: id }) {
-  try {
-    const response = yield call(updateFavoriteItems, id);
-    yield put(updateFavoriteItemsSuccess(response));
-  } catch (error) {
-    yield put(updateFavoriteItemsFail(error.response));
+    yield put(actions.getFavoriteItemsFail(error.response));
   }
 }
 
 function* PostSaga() {
-  yield takeLatest(GET_ITEMS, onGetItems);
-  // yield takeLatest(GET_POST_DETAILS, onGetPostDetails);
-  yield takeLatest(DELETE_ITEM, onDeleteItem);
-  yield takeLatest(PUT_ITEM, onUpdateItem);
-  yield takeLatest(GET_FAVORITE_ITEMS, onGetFavoriteItems);
-  yield takeLatest(TOGGLE_FAVORITE_ITEM, onUpdateFavoriteItem);
+  yield takeLatest(types.GET_ITEMS, onGetItems);
+  yield takeLatest(types.POST_ITEMS, onPostItems);
+  yield takeLatest(types.DELETE_ITEM, onDeleteItem);
+  yield takeLatest(types.PUT_ITEM, onUpdateItem);
+  yield takeLatest(types.GET_FAVORITE_ITEMS, onGetFavoriteItems);
 }
 
 export default PostSaga;

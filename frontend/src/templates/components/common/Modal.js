@@ -6,23 +6,37 @@ import Dropdown from "./input/Dropdown";
 import { BsStar, BsStarFill } from "react-icons/bs";
 
 function ContactsModal(props) {
-  const { isModalVisible, setIsModalVisible, handleOk, title, data } = props;
+  const {
+    isModalVisible,
+    setIsModalVisible,
+    handleOk,
+    handleDelete,
+    title,
+    data,
+  } = props;
   const [state, setState] = useState({
     file: null,
-    favorite: false,
   });
 
   useEffect(() => {
-    fields.map((item) => {
-      if (item.id === "status") {
-        handleChange(item.id, data[item.id] ? "Active" : "Inactive");
-      } else if (data[item.id]) {
-        handleChange(item.id, data[item.id]);
-      } else {
-        handleChange(item.id, item.default ? item.default : "");
-      }
+    if (title === "Edit Contact") handleEdit();
+    else handleAdd();
+  }, [title, isModalVisible]);
+
+  const handleEdit = () => {
+    Object.keys(data).forEach((item) => {
+      if (item === "status")
+        handleChange(item, data[item] ? "Active" : "Inactive");
+      else handleChange(item, data[item]);
     });
-  }, [props]);
+  };
+
+  const handleAdd = () => {
+    fields.forEach((item) => {
+      handleChange(item.id, item.default ? item.default : "");
+    });
+    handleChange("isFavorite", false);
+  };
 
   const handleCancel = () => {
     setIsModalVisible(false);
@@ -33,7 +47,6 @@ function ContactsModal(props) {
       return { ...prevState, [check]: value };
     });
   };
-
 
   const validateInput = () => {
     var flag = false;
@@ -49,6 +62,7 @@ function ContactsModal(props) {
 
     if (!flag)
       handleOk({
+        id: data.id,
         name: state.name,
         phoneNumber: state.phoneNumber,
         status: state.status === "Active" ? true : false,
@@ -67,6 +81,25 @@ function ContactsModal(props) {
       onCancel={handleCancel}
       width={900}
       centered
+      footer={[
+        <Button key="submit" type="primary" onClick={validateInput}>
+          Submit
+        </Button>,
+        <Button
+          className={data.id ? "" : "d-none"}
+          key="delete"
+          onClick={() => handleDelete(data.id)}
+        >
+          Delete
+        </Button>,
+        <Button
+          className={data.id ? "d-none" : ""}
+          key="back"
+          onClick={handleCancel}
+        >
+          Cancel
+        </Button>,
+      ]}
     >
       <Form className="row">
         <div className="col-md-3 text-center">
@@ -74,10 +107,16 @@ function ContactsModal(props) {
           <Tooltip title="favorite">
             <Button
               shape="circle"
-              icon={state.favorite ? <BsStarFill /> : <BsStar />}
+              icon={
+                state.isFavorite ? (
+                  <BsStarFill color="lightblue" />
+                ) : (
+                  <BsStar color="lightblue" />
+                )
+              }
               size="small"
               className="me-2"
-              onClick={() => handleChange("favorite", !state.favorite)}
+              onClick={() => handleChange("isFavorite", !state.isFavorite)}
             />
             Add to favorite
           </Tooltip>

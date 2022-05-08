@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Tooltip } from "antd";
-import { StarOutlined } from "@ant-design/icons";
+import { BsStar, BsStarFill } from "react-icons/bs";
 import CallActButtons from "../common/CallActButtons";
 import Avatar from "../common/Avatar";
 import UserDetails from "../common/UserDetails";
@@ -23,7 +23,7 @@ function FavCard({ data }) {
         {/* Favorite Btn */}
         <div className="col-auto">
           <Tooltip title="favorite">
-            <Button shape="circle" icon={<StarOutlined />} size="small" />
+            <Button shape="circle" icon={data.isFavorite ? <BsStarFill color="lightblue" /> : <BsStar color="lightblue" />} size="small" />
           </Tooltip>
         </div>
       </div>

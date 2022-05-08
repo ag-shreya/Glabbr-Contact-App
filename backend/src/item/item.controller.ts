@@ -41,14 +41,16 @@ export class ItemController {
     return await this.service.getItemById(id);
   }
 
-  @Delete(':id')
-  public async removeItemById(@Param('id') id: string): Promise<ItemDTO[]> {
-    return await this.service.removeItemById(id);
+  @Delete()
+  public async removeItemById(
+    @Query() query: { id: string },
+  ): Promise<ItemDTO[]> {
+    return await this.service.removeItemById(query.id);
   }
 
-  @Put(':id')
-  public async updateItemById(@Param('id') id: string, @Body() dto: ItemDTO) {
-    return await this.service.updateItemById(id, dto);
+  @Put()
+  public async updateItemById(@Body() dto: ItemDTO) {
+    return await this.service.updateItemById(dto);
   }
 }
 

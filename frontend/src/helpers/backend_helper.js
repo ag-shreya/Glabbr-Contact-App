@@ -1,25 +1,17 @@
-import { deleteContact, get, patch, post, put } from "./api_helper";
+import { deleteContact, get, post, put } from "./api_helper";
 import * as url from "./url_helper";
 
 // get all contact information
-export const getItems = () => get(url.GET_ITEMS);
+export const getItems = (params) => get(url.GET_CONTACT, { params });
 
-//get contact information by id
-export const getItemById = (id) => get(url.GET_ITEMS, { params: { id: id } });
-
-// post new contact
-export const postItems = (data) => post(url.POST_ITEMS, data);
+// post new contact information
+export const postItem = (data) => post(url.POST_CONTACT, data);
 
 //delete contact information by id
-export const deleteItem = (id) =>
-  deleteContact(url.DELETE_ITEM, { params: { id: id } });
+export const deleteItem = (id) => deleteContact(url.DELETE_CONTACT, { id });
 
 //update contact information by id
-export const updateItem = (id) => put(url.PUT_ITEM, { params: { id: id } });
+export const updateItem = (data) => put(url.PUT_CONTACT, data);
 
 //get favorite contact information
-export const getFavoriteItems = () => get(url.GET_FAVORITE_ITEM);
-
-//toggle favorite contact information
-export const updateFavoriteItems = (id) =>
-  patch(url.TOGGLE_FAVORITE_ITEM, { params: { id: id } });
+export const getFavoriteItems = () => get(url.GET_FAVORITE_CONTACT);

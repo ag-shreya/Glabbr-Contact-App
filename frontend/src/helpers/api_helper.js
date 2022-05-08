@@ -25,10 +25,10 @@ export async function get(url, config) {
     .then((response) => response.data);
 }
 
-export async function post(url, config) {
+export async function post(url, data) {
   return await axiosApi
     .post(url, {
-      ...config,
+      ...data,
     })
     .then((response) => response.data);
 }
@@ -52,8 +52,7 @@ export async function patch(url, config) {
 export async function deleteContact(url, config) {
   return await axiosApi
     .delete(url, {
-      ...config,
+      params: { ...config },
     })
     .then((response) => response.data);
 }
-

@@ -56,7 +56,8 @@ export class ItemService {
   }
 
   // update contact information (by id)
-  public async updateItemById(id: string, dto: ItemDTO): Promise<ItemDTO> {
+  public async updateItemById(dto: ItemDTO): Promise<ItemDTO> {
+    const id = dto.id;
     const item = await this.repo.query(
       `SELECT * FROM public.item WHERE id = '${id}';`,
     );
