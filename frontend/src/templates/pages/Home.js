@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Spin, Space } from "antd";
-import axios from "axios";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { getItems } from "../../store/contacts/actions";
-import { config } from "../../helpers/Constants";
+import * as actions from "../../store/contacts/actions";
 
 // Components
 import Contacts from "../components/contacts/Contacts";
@@ -22,22 +20,28 @@ function Home() {
   const [title, setTitle] = useState("");
 
   useEffect(() => {
-    dispatch(getItems());
+    handleGetContactItems();
   }, []);
 
   const showModal = (title, data) => {
-    if (data) setItem(data);
+    setItem(data);
     setTitle(title);
     setIsModalVisible(true);
   };
 
+  const handleGetContactItems = (page = 1, take = 10) => {
+    dispatch(actions.getContactItems({ page, take }));
+  };
+
   const handleOk = (data) => {
     setIsModalVisible(false);
-  
-    const endpoint = config.url.API_URL+"/item";
-    axios.post(endpoint, data).then((res) => {
-      console.log(res.data);
-    });
+    if (title === "Add Contact") dispatch(actions.postContactItem(data));
+    else dispatch(actions.updateContact(data));
+  };
+
+  const handleDelete = (id) => {
+    setIsModalVisible(false);
+    dispatch(actions.deleteContact(id));
   };
 
   return (
@@ -49,13 +53,12 @@ function Home() {
         </Space>
       ) : (
         <>
-          <Header showModal={() => showModal("Add Contact")} />
-          <Favorite
-            showModal={(data) => showModal("Edit Contact", data)}
-          />
+          <Header showModal={() => showModal("Add Contact", {})} />
+          <Favorite showModal={(data) => showModal("Edit Contact", data)} />
           <Contacts
             showModal={(data) => showModal("Edit Contact", data)}
-            data={contacts}
+            handleGetContactItems={handleGetContactItems}
+            {...contacts}
           />
         </>
       )}
@@ -65,6 +68,7 @@ function Home() {
         isModalVisible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
         handleOk={handleOk}
+        handleDelete={handleDelete}
         title={title}
         data={item}
       />

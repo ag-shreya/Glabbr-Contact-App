@@ -1,45 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { columns } from "../../../test/columns";
+import Dropdown from "../common/input/Dropdown";
 
-function Table({ showModal, data }) {
-  const pageSize = 10;
-  const paginationSize = 4;
+function Table({ showModal, data, meta, handleGetContactItems }) {
+  const [state, setState] = useState({});
 
   useEffect(() => {
-    const pageCount = Math.ceil(data.length / pageSize);
-    const paginationCount = Math.ceil(pageCount / paginationSize);
-    const paginationArray = Array.from(Array(pageCount).keys());
-
-    handleChange("pageCount", pageCount);
-    handleChange("paginationCount", paginationCount);
-    handleChange("paginationArray", paginationArray);
-  }, [data]);
-
-  const [state, setState] = useState({
-    currentPage: 1,
-    currentPagination: 0,
-    pageCount: 0,
-    paginationCount: 0,
-    paginationArray: [],
-  });
+    if (meta) {
+      setState({
+        ...state,
+        currentPage: parseInt(meta.page),
+        pageCount: meta.pageCount,
+        paginationArray: Array.from(Array(meta.pageCount).keys()),
+        take: meta.take,
+      });
+    }
+  }, [meta]);
 
   const handleChange = (check, value) => {
     setState((prevState) => {
       return { ...prevState, [check]: value };
     });
-  };
 
-  const onPageChange = (index) => {
-    let minPages = state.currentPagination * paginationSize;
-    let maxPages = (state.currentPagination + 1) * paginationSize;
-
-    if (index > maxPages)
-      handleChange("currentPagination", state.currentPagination + 1);
-
-    if (index <= minPages)
-      handleChange("currentPagination", state.currentPagination - 1);
-
-    handleChange("currentPage", index);
+    if (check === "take") {
+      handleGetContactItems(1, value);
+    } else if (check === "currentPage") {
+      handleGetContactItems(value, state.take);
+    }
   };
 
   return (
@@ -53,12 +40,8 @@ function Table({ showModal, data }) {
           </tr>
         </thead>
         <tbody>
-          {data
-            .slice(
-              (state.currentPage - 1) * pageSize,
-              state.currentPage * pageSize
-            )
-            .map((row) => {
+          {data &&
+            data.map((row) => {
               return (
                 <tr key={row.id} onClick={() => showModal(row)}>
                   {columns.map((colItem) => {
@@ -76,61 +59,75 @@ function Table({ showModal, data }) {
         </tbody>
       </table>
 
-      {data.length > pageSize && (
-        <nav aria-label="Page navigation">
-          <ul className="pagination justify-content-center">
-            <li className="page-item">
-              <button
-                className="btn btn-light me-2"
-                disabled={state.currentPage === 1}
-                onClick={(e) => {
-                  e.preventDefault();
-                  onPageChange(state.currentPage - 1);
-                }}
-              >
-                Previous
-              </button>
-            </li>
+      {meta && state.pageCount > 1 && (
+        <div className="row">
+          <div className="col-lg-1">
+            <Dropdown
+              data={{
+                id: "take",
+                label: "Display Contacts",
+                menu: [
+                  { label: 5, id: 5 },
+                  { label: 10, id: 10 },
+                  { label: 15, id: 15 },
+                ],
+              }}
+              state={state}
+              handleChange={handleChange}
+            />
+          </div>
 
-            {state.paginationArray
-              .slice(
-                state.currentPagination * paginationSize,
-                (state.currentPagination + 1) * paginationSize
-              )
-              .map((page) => {
+          <nav aria-label="Page navigation" className="col-10 mt-4">
+            <ul className="pagination justify-content-md-center mt-1">
+              <li className="page-item">
+                <button
+                  className="btn btn-light me-2"
+                  disabled={!meta.hasPreviousPage}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleChange("currentPage", state.currentPage - 1);
+                  }}
+                >
+                  Previous
+                </button>
+              </li>
+
+              {state.paginationArray.map((pagination) => {
                 return (
-                  <li className="page-item" key={page}>
+                  <li className="page-item" key={pagination}>
                     <button
                       className={`btn me-2 ${
-                        page + 1 === state.currentPage
+                        pagination + 1 === state.currentPage
                           ? "btn-primary"
                           : "btn-light"
                       }`}
                       onClick={(e) => {
                         e.preventDefault();
-                        onPageChange(page + 1);
+                        if (state.currentPage !== pagination + 1)
+                          handleChange("currentPage", pagination + 1);
                       }}
                     >
-                      {page + 1}
+                      {pagination + 1}
                     </button>
                   </li>
                 );
               })}
 
-            <li className="page-item">
-              <button
-                className="btn btn-light me-2"
-                disabled={state.currentPagination >= state.pageCount}
-                onClick={(e) => {
-                  e.preventDefault();
-                  onPageChange(state.currentPage + 1);
-                }}
-              >
-                Next
-              </button>
-            </li>
-          </ul>
-        </nav>
+              <li className="page-item">
+                <button
+                  className="btn btn-light me-2"
+                  disabled={!meta.hasNextPage}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleChange("currentPage", state.currentPage + 1);
+                  }}
+                >
+                  Next
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
       )}
     </div>
   );
