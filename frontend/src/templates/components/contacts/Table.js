@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { columns } from "../../../test/columns";
 import Dropdown from "../common/input/Dropdown";
+import { useSelector } from "react-redux";
 
-function Table({ showModal, data, meta, handleGetContactItems }) {
+function Table({ showModal, handleGetContactItems }) {
   const [state, setState] = useState({});
+  const { contacts } = useSelector((state) => state.PostReducer);
+  const { data, meta } = contacts;
 
   useEffect(() => {
     if (meta) {

@@ -3,7 +3,7 @@ import { Dropdown } from "react-bootstrap";
 function CustomDropdown({ data, state, handleChange }) {
   return (
     <React.Fragment>
-      <label htmlFor={data.id}>{data.label}</label>
+      {data.label && <label htmlFor={data.id}>{data.label}</label>}
       <Dropdown>
         <Dropdown.Toggle
           variant="light"

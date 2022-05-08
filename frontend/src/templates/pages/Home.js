@@ -13,7 +13,7 @@ import Modal from "../components/common/Modal";
 
 function Home() {
   let dispatch = useDispatch();
-  const { contacts, loadingItems } = useSelector((state) => state.PostReducer);
+  const { loadingItems } = useSelector((state) => state.PostReducer);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [item, setItem] = useState({});
@@ -53,12 +53,13 @@ function Home() {
         </Space>
       ) : (
         <>
-          <Header showModal={() => showModal("Add Contact", {})} />
+          <Header
+            showModal={() => showModal("Add Contact", {})}
+          />
           <Favorite showModal={(data) => showModal("Edit Contact", data)} />
           <Contacts
             showModal={(data) => showModal("Edit Contact", data)}
             handleGetContactItems={handleGetContactItems}
-            {...contacts}
           />
         </>
       )}
