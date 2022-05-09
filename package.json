@@ -1,0 +1,19 @@
+{
+  "name": "glabbr-contact-app",
+  "version": "1.0.0",
+  "description": "Contact Application for Glabbr Interview (Round - 2)",
+  "main": "cd backend && npm install && npm run start:dev",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ag-shreya/Glabbr-Contact-App.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ag-shreya/Glabbr-Contact-App/issues"
+  },
+  "homepage": "https://github.com/ag-shreya/Glabbr-Contact-App#readme"
+}

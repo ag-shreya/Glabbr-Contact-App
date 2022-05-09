@@ -1,10 +1,17 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsUUID, IsString, IsBoolean, IsObject } from 'class-validator';
+import {
+  IsUUID,
+  IsString,
+  IsBoolean,
+  IsArray,
+  IsOptional,
+} from 'class-validator';
 import { Item } from '../model/item.entity';
 
 export class ItemDTO implements Readonly<ItemDTO> {
   @ApiProperty()
   @IsUUID()
+  @IsOptional()
   id: string;
 
   @ApiProperty({ required: true })
@@ -36,7 +43,7 @@ export class ItemDTO implements Readonly<ItemDTO> {
     type: [String],
     example: ['client'],
   })
-  @IsObject()
+  @IsArray()
   tags: string[] = [];
 
   public static from(dto: Partial<ItemDTO>) {

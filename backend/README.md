@@ -16,7 +16,7 @@
      post: 5432 \
      username: postgres \
      password: root \
-     server: 172.17.0.2 (below are the cmds to get the id)
+     server: 172.17.0.2 (below are the cmds to get the id) / host.docker.internal
 
 ```cmd
 $ docker ps
@@ -45,13 +45,15 @@ $ docker inspect e14cd1f4a369 | grep IPAddress
 ```
 
 4. To generate seed data
+
 ```sh
-   npm run start:dev:db:seed 
+   npm run start:dev:db:seed
 ```
 
 5. Api Documentation via [Swagger](http://localhost:3000/api/)
 
 ---
+
 ### Helper Links
 
 1. NestJS, TypeORM and PostgreSQL Tutorial
@@ -64,4 +66,10 @@ $ docker inspect e14cd1f4a369 | grep IPAddress
 
    [Run PostgreSQL and pgAdmin in docker for local development using docker compose](https://belowthemalt.com/2021/06/09/run-postgresql-and-pgadmin-in-docker-for-local-development-using-docker-compose/)
 
-```
+3. Get paginated data
+
+   [How to create pagination in Nest.js with TypeORM + Swagger](https://pietrzakadrian.com/blog/how-to-create-pagination-in-nestjs-with-typeorm-swagger)
+
+4. Deploy on heroku
+
+   [Heroku Fu: Multiple Servers on One Dyno](https://medium.com/@nadayar/heroku-fu-multiple-servers-on-one-dyno-6fc68d57b373)
