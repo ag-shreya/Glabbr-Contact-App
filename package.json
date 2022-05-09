@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ag-shreya/Glabbr-Contact-App/issues"
   },
-  "homepage": "https://github.com/ag-shreya/Glabbr-Contact-App#readme"
+  "homepage": "https://github.com/ag-shreya/Glabbr-Contact-App#readme",
+  "engines": {
+    "node": "17.x"
+  }
 }
